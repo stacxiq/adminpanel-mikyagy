@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12" style="direction: rtl">
+                    <div class="card">
+                        <div class="card-header card-header-danger" style="text-align: center">
+                            <h4 class="card-title ">قائمة المستخدمين</h4>
+                            <p class="card-category">معلومات المستخدمين</p>                      
+                            <div class="row" style="direction: rtl">
+                               
+                                    <div class="col-md-4">                             
+                                        <mat-form-field>
+                                                <input autocomplete="off" matInput placeholder="البحث " name="name"
+                                                    [(ngModel)]="name" required (input)="onChange($event)">
+                                            </mat-form-field> 
+                                    </div>
+                                               
+                                            </div>  
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-danger">
+                                        <th>الاسم الاول</th>
+                                        <th>الاسم الاخير</th>
+                                        <th>البريد الالكتروني</th>
+                                        <th>رمز المرور</th>
+                                        <th>رقم الهاتف</th>
+                                        <th>العنوان </th>
+                                        <th>الاجرائات</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of usersData">
+                                            <td>{{user.firstname}}</td>
+                                            <td>{{user.lastname}}</td>
+                                            <td>{{user.email}}</td>
+                                            <td>{{user.password}}</td>
+                                            <td>{{user.phone}}</td>
+                                            <td>{{user.governorate}}/{{user.city}}/{{user.nearest_point}}</td>
+                                            <td><a style="color:white; background: #ff5e00"
+                                                class="btn btn-white btn-round btn-just-icon" (click)="onDelete(user)">
+                                                <i class="material-icons">delete</i>
+                                            </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

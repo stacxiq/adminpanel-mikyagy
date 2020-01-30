@@ -1,0 +1,197 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title" style="text-align: center">قائمة المنتجات</h4>
+                        <p class="card-category" style="text-align: center">اضافة منتج جديد</p>
+                    </div>
+                    <div class="card-body">
+                        <form #f="ngForm" (ngSubmit)="saveFormData(f)" style="direction:rtl">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="اسم المنتج" name="title"
+                                            [(ngModel)]="product.title" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>اختر القسم</mat-label>
+                                        <mat-select (click)="checkbrand()" name="categorty" [(ngModel)]="product.categorty">
+                                            <mat-option *ngFor="let categorty of sectionData" [value]="categorty.name">
+                                                {{categorty.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>اختر البراند</mat-label>
+                                        <mat-select (click)="checkbrand()" name="brand" [(ngModel)]="product.brand">
+                                            <mat-option *ngFor="let brand of brandData" [value]="brand.name">
+                                                {{brand.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="سعر المنتج" name="price"
+                                            [(ngModel)]="product.price" required>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="الوصف" name="description"
+                                            [(ngModel)]="product.description" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="الالوان" name="colors"
+                                            [(ngModel)]="product.colors" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="الاحجام" name="size"
+                                            [(ngModel)]="product.size" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="رمز التسلسل" name="serial_code"
+                                            [(ngModel)]="product.serial_code" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <mat-label>نسبة التخفيض</mat-label>
+                                        <mat-select name="discount" [(ngModel)]="product.discount">
+                                            <mat-option value=0>0%</mat-option>
+                                            <mat-option value=0.05>5%</mat-option>
+                                            <mat-option value=0.1>10%</mat-option>
+                                            <mat-option value=0.15>15%</mat-option>
+                                            <mat-option value=0.2>20%</mat-option>
+                                            <mat-option value=0.25>25%</mat-option>
+                                            <mat-option value=0.3>30%</mat-option>
+                                            <mat-option value=0.35>35%</mat-option>
+                                            <mat-option value=0.4>40%</mat-option>
+                                            <mat-option value=0.45>45%</mat-option>
+                                            <mat-option value=0.5>50%</mat-option>
+                                            <mat-option value=0.55>55%</mat-option>
+                                            <mat-option value=0.6>60%</mat-option>
+                                            <mat-option value=0.65>65%</mat-option>
+                                            <mat-option value=0.7>70%</mat-option>
+                                            <mat-option value=0.75>75%</mat-option>
+                                            <mat-option value=0.8>80%</mat-option>
+                                            <mat-option value=0.85>85%</mat-option>
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <mat-label>متميز</mat-label>
+                                        <mat-select required name="Special" [(ngModel)]="product.Special">
+                                            <mat-option value=true>نعم</mat-option>
+                                            <mat-option value=false>كلا</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-12" style="text-align: right; direction: rtl">
+                                    <h4 style="text-align: right; font-weight: bold">صورة المنتج</h4>
+                                    <input type="file" name="file" id="file" class="inputfile"
+                                        (change)="onSelectedFile($event)" accept=".png,.jpg" required />
+                                    <label class="btn btn-danger" for="file"><i style="margin: 0 auto"
+                                            class="material-icons">cloud_upload</i></label>
+                                    <div class="progress">
+                                        <div class="progress-bar default-bg-color" role="progressbar"
+                                            [style.width]="(uploadProgress | async) + '%'"
+                                            [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="!f.valid"
+                                class="btn btn-danger pull-right"><i class="material-icons">check</i>
+                                {{btnTXT}}</button>
+                            <button mat-raised-button class="btn btn-danger pull-right" routerLink="/dashboard"><i
+                                    class="material-icons">cancel</i> الغاء</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-12" style="direction: rtl">
+                    <div class="card">
+                        <div class="card-header card-header-danger" style="text-align: center">
+                            <h4 class="card-title ">المعلومات</h4>
+                            <p class="card-category">معلومات المنتجات</p>
+                         
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-danger">
+                                        <th>اسم المنتج</th>
+                                        <th>نوع المنتج</th>
+                                        <th>البراند</th>
+                                        <th>السعر</th>
+                                        <th> مميز</th>
+                                        <th>خصم</th>
+                                        <th> الوصف</th>
+                                        <th> الالوان</th>
+                                        <th> الاحجام</th>
+                                        <th> رمز التسلسل</th>
+                                        <th>صورة المنتج</th>
+                                        <th>الاجرائات</th>
+                                    </thead>
+                                    <tbody>
+ 
+                                        <tr *ngFor="let p of productData">
+                                            <td>{{p.title}}</td>
+                                            <td>{{p.categorty}}</td>
+                                            <td>{{p.brand}}</td>
+                                            <td>{{p.price}}</td>
+                                            <td>{{p.Special}}</td>
+                                            <td>{{p.discount}}</td>
+                                            <td>{{p.description}}</td>
+                                            <td>{{p.colors}}</td>
+                                            <td>{{p.size}}</td>
+                                            <td>{{p.serial_code}}</td>
+                                            <td><img style="background-size: auto; width: 50px;height: 50px; border-radius: 100%"
+                                                    src="{{p.image[0]}}">
+                                            </td>
+                                            <td><a style="color:white; background: firebrick"
+                                                    class="btn btn-white btn-round btn-just-icon" (click)="onDelete(p)">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                                <a style="color:white; background: firebrick"
+                                                class="btn btn-white btn-round btn-just-icon" (click)="onEdit(p)">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <a style="color:white; background: firebrick"
+                                                class="btn btn-white btn-round btn-just-icon" (click)="addsub(p)">
+                                                    <i class="material-icons">add</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- <button (click)="prevPage()" [disabled]="!prevKeys?.length">Prev</button>
+                                <button (click)="nextPage()" [disabled]="!nextKey">Next</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

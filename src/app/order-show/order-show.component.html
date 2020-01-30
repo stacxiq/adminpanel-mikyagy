@@ -1,0 +1,81 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="print-section" class="col-md-12">
+                <div class="col-md-12" style="direction: rtl">
+                    <div  class="card">
+                        <div class="card-header card-header-danger" style="text-align: center">
+                            <h4 class="card-title ">قائمة الطلبات</h4>
+                            <p class="card-category">معلومات الشخصية</p>                      
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-danger">
+                                        <th>اسم العميل</th>
+                                        <th> العنوان</th>
+                                        <th>رقم الهاتف</th>
+                                        <th>رقم الثاني</th>
+                                        <th>السعر الكلي</th>
+                                        <th>كوبون التخفيض </th>
+                                        <th>قيمه التخفيض </th>
+                                        <th>تاريخ الطلب</th>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{orderData[4]}} {{orderData[7]}}</td>
+                                            <td>{{orderData[5]}}/{{orderData[0]}}/{{orderData[8]}}</td>
+                                            <td>{{orderData[9]}}</td>
+                                            <td>{{orderData[10]}}</td>
+                                            <td>{{orderData[12]}}</td>
+                                            <td>{{orderData[1]}}</td>
+                                            <td>{{orderData[2]}}</td>
+                                            <td>{{orderData[3]}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="direction: rtl">
+                    <div class="card">
+                        <div class="card-header card-header-danger" style="text-align: center">
+                            <h4 class="card-title ">قائمة الطلبات</h4>
+                            <p class="card-category">معلومات الطلب</p>                      
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-danger">
+                                        
+
+                                        <th>اسم المنتج </th>
+                                        <th>السعر </th>
+                                        <th>Variations </th>
+                                        <th>الكمية </th>
+                                        <th>السعر الكلي </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let product of orderData[11]">
+                                            <td>{{product.name}}</td>
+                                            <td>{{product.price}}</td>
+                                            <td>{{product.variations}}</td>
+                                            <td>{{product.qty}}</td>
+                                            <td>{{product.totalprice}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button [useExistingCss]="true" mat-raised-button printSectionId="print-section" ngxPrint
+            class="btn btn-danger pull-right"><i class="material-icons">check</i>
+            طباعة</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12" style="direction: rtl">
+                    <div class="card">
+                        <div class="card-header card-header-danger" style="text-align: center">
+                            <h4 class="card-title ">قائمة الطلبات</h4>
+                            <p class="card-category">معلومات الطلبات</p>
+                            <div class="row" style="direction: rtl">
+                              
+                                <div class="col-md-4">  
+                                        <h4> البحث</h4>                           
+                                    <mat-form-field>
+                                            <input autocomplete="off" matInput placeholder="البحث " name="name"
+                                                [(ngModel)]="name" required (input)="onChange($event)">
+                                        </mat-form-field> 
+                                </div>
+
+                    <div class="col-md-4"> 
+                        <h4>تاريخ الطلب</h4>
+                     <mat-form-field>
+                        <input autocomplete="off" matInput [matDatepicker]="picker" 
+                         placeholder="تاريخ الطلب" name="date" 
+                          [(ngModel)]="date" required> 
+                   <mat-datepicker-toggle matSuffix [for]="picker">
+                   </mat-datepicker-toggle> 
+                  <mat-datepicker #picker>
+                   </mat-datepicker> 
+                   </mat-form-field> 
+                    </div>
+                                <div class="col-md-4" style="margin-top: 25px">
+                                    <button mat-raised-button (click)="search(date)"
+                                        class="btn btn-danger pull-right"><i class="material-icons">check</i>
+                                        بحث</button>
+                                </div>
+                            </div>                      
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-danger">
+                                        <th>اسم العميل</th>
+                                        <th> العنوان</th>
+                                        <th>رقم الهاتف</th>
+                                        <th>السعر الكلي</th>
+                                        <th>تاريخ الطلب</th>
+                                        <th>الاجرائات</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let order of orderData">
+                                            <td>{{order.firstname}} {{order.lastname}}</td>
+                                            <td>{{order.governorate}}/{{order.city}}/{{order.nearest_point}}</td>
+                                            <td>{{order.phone}}</td>
+                                            <td>{{order.total}}</td>
+                                            <td>{{order.date}}</td>
+                                        
+                                            
+                                            <td><a style="color:white; background: #cf1929"
+                                                class="btn btn-white btn-round btn-just-icon" (click)="onDelete(order)">
+                                                <i class="material-icons">delete</i>
+                                            </a>
+                                            <a style="color:white; background: #cf1929"
+                                                class="btn btn-white btn-round btn-just-icon" (click)="show(order)">
+                                                <i class="material-icons">visibility</i>
+                                            </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title" style="text-align: center">تعديل المقالة</h4>
+                        <p class="card-category" style="text-align: center">تعديل المقالةالمضافة الى التطبيق</p>
+                    </div>
+                    <div class="card-body">
+                        <form #f="ngForm" (ngSubmit)="saveFormData(f)">
+                            <div class="row" style="text-align: right; direction: rtl">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput placeholder="عنوان المقالة" name="title"
+                                            [(ngModel)]="article.title" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <mat-label>اختر الصنف</mat-label>
+                                        <mat-select name="category" [(ngModel)]="article.category">
+                                            <mat-option value="اخبار الجمال">اخبار الجمال</mat-option>
+                                            <mat-option value="اظافر">اظافر</mat-option>
+                                            <mat-option value="مكياجك">مكياجك</mat-option>
+                                            <mat-option value="عناية بلبشرة">عناية بلبشرة</mat-option>
+                                            <mat-option value="شعر وتسريحات">شعر وتسريحات</mat-option>
+                                            <mat-option value="عطور">عطور</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: right; direction: rtl">
+                                <div class="col-md-12">
+                                    <div>
+                                        <p>صورة المقالة</p>
+                                        <input type="file" name="file" id="file" class="inputfile"
+                                            (change)="onSelectedFile($event)" accept=".png,.jpg" required />
+                                        <label class="btn btn-danger" for="file"><i style="margin: 0 auto"
+                                                class="material-icons">cloud_upload</i></label>
+                                        <div class="progress">
+                                            <div class="progress-bar default-bg-color" role="progressbar"
+                                                [style.width]="(uploadProgress | async) + '%'"
+                                                [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: right; direction: rtl">
+                                <div class="col-md-12">
+                                    <ngx-trumbowyg-editor name="editor" [(ngModel)]="article.description">
+                                    </ngx-trumbowyg-editor>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="!f.valid"
+                                class="btn btn-danger pull-right">تحديث</button>
+                            <button mat-raised-button class="btn btn-danger pull-right" routerLink="/articles"><i
+                                    class="material-icons">cancel</i> الغاء</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

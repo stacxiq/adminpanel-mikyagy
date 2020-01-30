@@ -1,0 +1,71 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title" style="text-align: center">اضافة براند</h4>
+            <p class="card-category" style="text-align: center">اضافة براند جديد الى قائمة البراندات</p>
+          </div>
+          <div class="card-body">
+            <div>
+              <form #f="ngForm" (ngSubmit)="saveFormData(f)">
+                <div class="row" style="direction: rtl">
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <input autocomplete="off" matInput placeholder="اسم البراند" name="name" [(ngModel)]="brand.name"
+                        required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>نسبة التخفيض</mat-label>
+                        <mat-select name="discount" [(ngModel)]="brand.discount">
+                            <mat-option value=0>0%</mat-option>
+                            <mat-option value=0.05>5%</mat-option>
+                            <mat-option value=0.1>10%</mat-option>
+                            <mat-option value=0.15>15%</mat-option>
+                            <mat-option value=0.2>20%</mat-option>
+                            <mat-option value=0.25>25%</mat-option>
+                            <mat-option value=0.3>30%</mat-option>
+                            <mat-option value=0.35>35%</mat-option>
+                            <mat-option value=0.4>40%</mat-option>
+                            <mat-option value=0.45>45%</mat-option>
+                            <mat-option value=0.5>50%</mat-option>
+                            <mat-option value=0.55>55%</mat-option>
+                            <mat-option value=0.6>60%</mat-option>
+                            <mat-option value=0.65>65%</mat-option>
+                            <mat-option value=0.7>70%</mat-option>
+                            <mat-option value=0.75>75%</mat-option>
+                            <mat-option value=0.8>80%</mat-option>
+                            <mat-option value=0.85>85%</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                  <div class="col-md-12" style="text-align: right; direction: rtl">
+                    <h4 style="text-align: right; font-weight: bold">صورة البراند</h4>
+                    <input type="file" name="file" id="file" class="inputfile" (change)="onSelectedFile($event)"
+                      accept=".png,.jpg" required />
+                    <label class="btn btn-danger" for="file"><i style="margin: 0 auto"
+                        class="material-icons">cloud_upload</i></label>
+                    <div class="progress">
+                      <div class="progress-bar default-bg-color" role="progressbar"
+                        [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+                <button mat-raised-button type="submit" [disabled]="!f.valid" class="btn btn-danger pull-right"><i
+                    class="material-icons">check</i> اضافة</button>
+                <button mat-raised-button class="btn btn-danger pull-right" routerLink="/brandview"><i
+                    class="material-icons">cancel</i> الغاء</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,7 @@
     "@angular/platform-server": "8.2.2",
     "@angular/router": "8.2.2",
     "acorn": "7.0.0",
-    "ajv": "6.10.2",
+    "ajv": "6.12.3",
     "angular-webstorage-service": "^1.0.2",
     "arrive": "2.4.1",
     "bootstrap": "4.3.1",
